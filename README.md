@@ -1,7 +1,6 @@
-# Pemrograman Web - OBE 2026
-
-### Identitas
+## Identitas
 - **Nama**: Ainur Rofiq
+- **NPM**: 2440304034
 - **Angkatan**: 2024
 - **Mata Kuliah**: Pemrograman Web (26TJ453127)
 - **Program Studi**: Sarjana Teknik Komputer - Universitas Borneo Tarakan
