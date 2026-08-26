@@ -1,6 +1,8 @@
 # Pemrograman Web - OBE 2026
 
-## Identitas
+### Identitas
+- **Nama**: Ainur Rofiq
+- **Angkatan**: 2024
 - **Mata Kuliah**: Pemrograman Web (26TJ453127)
 - **Program Studi**: Sarjana Teknik Komputer - Universitas Borneo Tarakan
 - **Semester**: 5
@@ -17,3 +19,6 @@ Repository ini memuat fondasi awal pengembangan proyek aplikasi web berbasis kur
 1. Jalankan Laragon 5 dan klik **Start All**.
 2. Simpan proyek pada path `C:\laragon\www\pemweb-obe`.
 3. Akses halaman melalui browser di URL: [http://localhost/pemweb-obe/](http://localhost/pemweb-obe/)
+
+## Status Proyek
+- **Progress**: Selesai Modul 1 (Setup Environment, DevTools, dan Version Control).
