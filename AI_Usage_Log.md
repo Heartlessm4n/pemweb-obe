@@ -1,5 +1,7 @@
-# AI Usage Log
+# AI Usage Log - Praktikum Pemrograman Web OBE
 
 | Tanggal | Tujuan Penggunaan AI | Prompt Ringkas | Hasil | Verifikasi | Keputusan Mahasiswa |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 2026-08-26 | Troubleshooting DevTools & Setup Git | "kenapa ini", "error 403", "bantu buat penjelasan di laporan" | Penjelasan skema URL HTTP, penanganan Credential Manager Windows, dan draf laporan | Mengecek kesesuaian dengan Modul 1 Pemweb | Mengikuti langkah perbaikan, menyelesaikan login GitHub, dan menyusun laporan |
+| 26 Agustus 2026 | Membantu troubleshooting error konfigurasi Apache/Laragon (SSI Error) dan pengecekan tab Network browser. | "Cara fixing laragon apache ssi error dan cara screenshot network tab" | Menjelaskan langkah memperbaiki error server lokal dan memandu membuka tab Network serta mengambil tangkapan layar. | Diuji langsung pada browser lokal dan dicocokkan dengan kebutuhan tugas. | Diterapkan karena sesuai dan berhasil mengatasi kendala konfigurasi web server lokal. |
+| 26 Agustus 2026 | Membantu panduan perintah dasar Git (`git init`, `commit`, `push` remote repository). | "gimana cara git init dan push ke github lalu mengatasi error refspec main" | Memberikan tahapan command line Git serta solusi untuk error branch `master` ke `main`. | Dijalankan langsung pada terminal VS Code dan diverifikasi kodenya terhubung ke GitHub. | Diterapkan setelah disesuaikan dengan nama branch lokal (`master` / `main`). |
+| 26 Agustus 2026 | Pembuatan templat dokumentasi file `README.md` dan `AI_USAGE_LOG.md`. | "Buat README.md dan AI_USAGE_LOG.md sesuai instruksi tugas" | Menyediakan struktur teks Markdown lengkap untuk identitas, deskripsi, teknologi, dan tabel log. | Diperiksa kembali kelengkapan isinya sesuai instruksi soal nomor 9 dan 10. | Diterapkan dan disesuaikan dengan identitas pribadi. |
