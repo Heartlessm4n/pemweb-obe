@@ -24,12 +24,17 @@ Repository ini memuat fondasi awal pengembangan proyek aplikasi web berbasis kur
 Situs Layanan Publik yang dianalisis: **`https://bps.go.id/id`**
 
 | No | Request Name / Resource | Method | Status | Type | Size | Fungsi Request |
-|:--:|:---|:---:|:---:|:---:|:---:|:---|
+|:---|:---|:---|:---|:---|:---|:---|
 | 1 | `id` | GET | 200 | document | 22.4 kB | Mengambil dokumen utama (HTML) untuk memuat struktur halaman web. |
 | 2 | `e1af272ccee01ff0-s.p.woff2` | GET | 200 | font | 48.8 kB | Mengunduh berkas web font (WOFF2) untuk merender tipografi teks. |
 | 3 | `9bfd5c302cf50924.css` | GET | 200 | stylesheet | 20.2 kB | Memuat stylesheet CSS utama untuk mengatur tata letak dan desain visual. |
 | 4 | `email-decode.min.js` | GET | 200 | script | 0.8 kB | Memuat skrip JavaScript untuk mendekode dan melindungi email dari spam. |
 | 5 | `geoportal.svg` | GET | 200 | svg+xml | 9.9 kB | Mengunduh berkas gambar SVG untuk menampilkan ikon layanan Geoportal. |
 
+## Catatan Fitur Modul 2 (Struktur HTML5 & Aksesibilitas)
+- Implementasi elemen semantik HTML5 (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
+- Penerapan aksesibilitas dasar (atribut `lang="id"`, deskripsi `alt` pada `<img>`, serta relasi `<label for="">` dengan `<input id="">`).
+- Uji navigasi keyboard (*Skip link* `#main-content`).
+
 ## Status Proyek
-- **Progress**: Selesai Modul 1 (Setup Environment, DevTools, dan Version Control).
+- **Progress**: Selesai Modul 2 (Struktur HTML5 Semantik dan Aksesibilitas Web Dasar).
