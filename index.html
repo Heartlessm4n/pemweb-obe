@@ -3,10 +3,70 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Praktikum Pemrograman Web</title>
+  <meta name="description" content="Portal Web Proyek Individu Praktikum Pemrograman Web UBT">
+  <title>Praktikum Pemrograman Web - Muhammad Ainur Rofiq</title>
 </head>
 <body>
-  <h1>Praktikum Pemrograman Web</h1>
-  <p>Repository awal OBE.</p>
+
+  <a href="#main-content">Lewati ke konten utama</a>
+
+  <header>
+    <h1>Praktikum Pemrograman Web</h1>
+    <p>Repository awal OBE.</p>
+    <nav aria-label="Navigasi Utama">
+      <ul>
+        <li><a href="#fitur">Fitur Utama</a></li>
+        <li><a href="#informasi">Informasi Proyek</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <section id="fitur">
+      <h2>Fitur Layanan Praktikum</h2>
+      <article>
+        <h3>Struktur Semantik HTML5</h3>
+        <img src="assets/img/html5.png" alt="Ilustrasi struktur semantik dokumen HTML5">
+        <p>Penggunaan elemen semantik untuk meningkatkan struktur data dan keterbacaan kode.</p>
+      </article>
+      <article>
+        <h3>Aksesibilitas Web Dasar</h3>
+        <img src="assets/img/icon-check.png" alt="" role="presentation">
+        <p>Penerapan navigasi keyboard, label form, dan teks alternatif untuk layar pembaca.</p>
+      </article>
+    </section>
+
+    <section id="informasi">
+      <h2>Informasi Pengembang</h2>
+      <p>Proyek ini dikembangkan oleh <strong>Muhammad Ainur Rofiq</strong> (NPM: 2440304034) untuk memenuhi milestone Pertemuan 2 mata kuliah Pemrograman Web.</p>
+    </section>
+
+    <section id="kontak">
+      <h2>Formulir Kontak</h2>
+      <form action="#" method="post">
+        <div>
+          <label for="nama">Nama Lengkap:</label>
+          <input type="text" id="nama" name="nama" required>
+        </div>
+        <div>
+          <label for="email">Email Mahasiswa:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+          <label for="pesan">Pesan / Masukan:</label>
+          <textarea id="pesan" name="pesan" rows="4" required></textarea>
+        </div>
+        <button type="submit">Kirim Pesan</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Muhammad Ainur Rofiq - Teknik Komputer UBT</p>
+  </footer>
+
 </body>
 </html>
