@@ -8,8 +8,10 @@
 </head>
 <body>
 
+  <!-- Aksesibilitas Keyboard: Skip Link -->
   <a href="#main-content">Lewati ke konten utama</a>
 
+  <!-- Header Utama dan Navigasi -->
   <header>
     <h1>Praktikum Pemrograman Web</h1>
     <p>Repository awal OBE.</p>
@@ -22,15 +24,19 @@
     </nav>
   </header>
 
+  <!-- Bagian Utama: 3 Section dan Form Kontak -->
   <main id="main-content">
 
+    <!-- Section 1: Fitur Utama -->
     <section id="fitur">
       <h2>Fitur Layanan Praktikum</h2>
+      
       <article>
         <h3>Struktur Semantik HTML5</h3>
         <img src="assets/img/html5.png" alt="Ilustrasi struktur semantik dokumen HTML5">
         <p>Penggunaan elemen semantik untuk meningkatkan struktur data dan keterbacaan kode.</p>
       </article>
+
       <article>
         <h3>Aksesibilitas Web Dasar</h3>
         <img src="assets/img/icon-check.png" alt="" role="presentation">
@@ -38,11 +44,13 @@
       </article>
     </section>
 
+    <!-- Section 2: Informasi Pengembang -->
     <section id="informasi">
       <h2>Informasi Pengembang</h2>
-      <p>Proyek ini dikembangkan oleh <strong>Muhammad Ainur Rofiq</strong> (NPM: 2440304034) untuk memenuhi milestone Pertemuan 2 mata kuliah Pemrograman Web.</p>
+      <p>Proyek ini dikembangkan oleh <strong>Muhammad Ainur Rofiq</strong> (NPM: 2440304034) untuk memenuhi milestone Pertemuan 2 mata kuliah Pemrograman Web[cite: 1, 2].</p>
     </section>
 
+    <!-- Section 3: Form Kontak -->
     <section id="kontak">
       <h2>Formulir Kontak</h2>
       <form action="#" method="post">
@@ -50,20 +58,24 @@
           <label for="nama">Nama Lengkap:</label>
           <input type="text" id="nama" name="nama" required>
         </div>
+
         <div>
           <label for="email">Email Mahasiswa:</label>
           <input type="email" id="email" name="email" required>
         </div>
+
         <div>
           <label for="pesan">Pesan / Masukan:</label>
           <textarea id="pesan" name="pesan" rows="4" required></textarea>
         </div>
+
         <button type="submit">Kirim Pesan</button>
       </form>
     </section>
 
   </main>
 
+  <!-- Elemen Aksesibilitas: Alt Text dan Skip Link -->
   <footer>
     <p>&copy; 2026 Muhammad Ainur Rofiq - Teknik Komputer UBT</p>
   </footer>
