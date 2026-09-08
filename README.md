@@ -1,18 +1,18 @@
 ## Identitas
-- **Nama**: Ainur Rofiq
-- **NPM**: 2440304034
-- **Angkatan**: 2024
-- **Mata Kuliah**: Pemrograman Web (26TJ453127)
-- **Program Studi**: Sarjana Teknik Komputer - Universitas Borneo Tarakan
-- **Semester**: 5
+- **Nama:** Ainur Rofiq
+- **NPM:** 2440304034
+- **Angkatan:** 2024
+- **Mata Kuliah:** Pemrograman Web (26TJ453127)
+- **Program Studi:** Sarjana Teknik Komputer - Universitas Borneo Tarakan
+- **Semester:** 5
 
 ## Deskripsi Proyek
-Repository ini memuat fondasi awal pengembangan proyek aplikasi web berbasis kurikulum OBE.
+Repository ini memuat fondasi awal pengembangan proyek aplikasi web berbasis kurikulum OBE: **SITRA-BPJS Kesehatan (Sistem Registrasi & Evaluasi Sosialisasi Terpadu)** untuk BPJS Kesehatan Kantor Kabupaten Nunukan.
 
 ## Environment & Spesifikasi
-- **Web Server**: Laragon 5 (Apache)
-- **Bahasa Pemrograman**: PHP 8.4
-- **Version Control**: Git & GitHub
+- **Web Server:** Laragon 5 (Apache)
+- **Bahasa Pemrograman:** PHP 8.4 / HTML5
+- **Version Control:** Git & GitHub
 
 ## Cara Menjalankan Proyek
 1. Jalankan Laragon 5 dan klik **Start All**.
@@ -21,7 +21,7 @@ Repository ini memuat fondasi awal pengembangan proyek aplikasi web berbasis kur
 
 ## Analisis Request-Response HTTP
 
-Situs Layanan Publik yang dianalisis: **`https://bps.go.id/id`**
+Situs Layanan Publik yang dianalisis: **https://bps.go.id/id**
 
 | No | Request Name / Resource | Method | Status | Type | Size | Fungsi Request |
 |:---|:---|:---|:---|:---|:---|:---|
@@ -32,9 +32,10 @@ Situs Layanan Publik yang dianalisis: **`https://bps.go.id/id`**
 | 5 | `geoportal.svg` | GET | 200 | svg+xml | 9.9 kB | Mengunduh berkas gambar SVG untuk menampilkan ikon layanan Geoportal. |
 
 ## Catatan Fitur Modul 2 (Struktur HTML5 & Aksesibilitas)
-- Implementasi elemen semantik HTML5 (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`).
-- Penerapan aksesibilitas dasar (atribut `lang="id"`, deskripsi `alt` pada `<img>`, serta relasi `<label for="">` dengan `<input id="">`).
+- Implementasi elemen semantik HTML5 (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`) untuk proyek SITRA-BPJS Kesehatan Kantor Kabupaten Nunukan.
+- Penerapan aksesibilitas dasar (atribut `lang="id"`, deskripsi `alt` pada `<img>` `assets/sosialisasi bpjs.jpg` ukuran 350px, serta relasi `<label for="no_jkn">` dengan `<input id="no_jkn">`).
 - Uji navigasi keyboard (*Skip link* `#main-content`).
+- Detail kegiatan sosialisasi khusus pekerja PT. Nunukan Jaya Lestari (PT.NJL) dengan narasumber Kepala Kabupaten BPJS Kesehatan Nunukan (Yuliarsih Sahar).
 
 ## Status Proyek
-- **Progress**: Selesai Modul 2 (Struktur HTML5 Semantik dan Aksesibilitas Web Dasar).
+- **Progress:** Selesai Modul 2 (Struktur HTML5 Semantik dan Aksesibilitas Web Dasar - SITRA BPJS Nunukan).
