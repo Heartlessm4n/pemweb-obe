@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sistem Registrasi dan Evaluasi Sosialisasi Terpadu BPJS Kesehatan Kantor Kabupaten Nunukan">
     <title>SITRA-BPJS | Kantor Kabupaten Nunukan</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Skip-link Aksesibilitas Navigasi Keyboard -->
-    <a href="#main-content">Lewati ke konten utama</a>
+    <!-- Skip-link Aksesibilitas Keyboard -->
+    <a href="#main-content" class="skip-link">Lewati ke konten utama</a>
 
-    <!-- Header & Navigasi Utama -->
-    <header>
-        <a href="#main-content">
-            <img src="https://via.placeholder.com/220x60/009944/ffffff?text=BPJS+Kesehatan+Nunukan" alt="Kembali ke beranda utama SITRA BPJS Kesehatan Kantor Kabupaten Nunukan" width="220">
-        </a>
-        <h1>SITRA-BPJS Kesehatan</h1>
-        <p>Sistem Registrasi & Evaluasi Sosialisasi Terpadu - BPJS Kesehatan Kantor Kabupaten Nunukan</p>
+    <!-- Header & Navigasi Utama (Flexbox) -->
+    <header role="banner">
+        <div class="brand-container">
+            <div>
+                <h1>SITRA-BPJS Kesehatan</h1>
+                <p class="subtitle">Sistem Registrasi & Evaluasi Sosialisasi Terpadu - BPJS Kesehatan Kantor Kabupaten Nunukan</p>
+            </div>
+        </div>
         
         <nav aria-label="Navigasi Utama">
             <ul>
@@ -29,23 +31,26 @@
     </header>
 
     <!-- Konten Utama -->
-    <main id="main-content">
+    <main id="main-content" role="main">
 
-        <!-- Section 1: Informasi Kegiatan Sosialisasi -->
-        <section id="informasi">
+        <!-- Section 1: Informasi Kegiatan Sosialisasi (CSS Grid) -->
+        <section id="informasi" class="card-section">
             <h2>Informasi Kegiatan Sosialisasi</h2>
-            <article>
-                <h3>Edukasi Program JKN-KIS bagi Pekerja PT. Nunukan Jaya Lestari</h3>
-                <p>
-                    Kegiatan sosialisasi ini diselenggarakan oleh BPJS Kesehatan Kantor Kabupaten Nunukan 
-                    guna memberikan pemahaman mendalam mengenai hak, kewajiban, tata cara pendaftaran, 
-                    serta pemanfaatan prosedur pelayanan fasilitas kesehatan JKN-KIS bagi para pekerja dan instansi setempat.
-                </p>
-                <!-- Ukuran gambar diperkecil menjadi 350px -->
-                <img src="assets/sosialisasi-bpjs.jpeg" alt="Dokumentasi sosialisasi BPJS Kesehatan di PT. Nunukan Jaya Lestari" width="350">
+            <article class="article-grid">
+                <div class="article-content">
+                    <h3>Edukasi Program JKN-KIS bagi Pekerja PT. Nunukan Jaya Lestari</h3>
+                    <p>
+                        Kegiatan sosialisasi ini diselenggarakan oleh BPJS Kesehatan Kantor Kabupaten Nunukan 
+                        guna memberikan pemahaman mendalam mengenai hak, kewajiban, tata cara pendaftaran, 
+                        serta pemanfaatan prosedur pelayanan fasilitas kesehatan JKN-KIS bagi para pekerja dan instansi setempat.
+                    </p>
+                </div>
+                <div class="article-image">
+                    <img src="assets/sosialisasi.jpeg" alt="Dokumentasi sosialisasi BPJS Kesehatan di PT. Nunukan Jaya Lestari" width="350">
+                </div>
             </article>
 
-            <div>
+            <div class="detail-box">
                 <h4>Detail Acara Berlangsung:</h4>
                 <p><strong>Nama Kegiatan:</strong> Pemberian informasi langsung kepada peserta di PT. Nunukan Jaya Lestari</p>
                 <p><strong>Tempat Kegiatan:</strong> Titik kumpul estate PT. Nunukan Jaya Lestari (PT.NJL)</p>
@@ -54,66 +59,79 @@
         </section>
 
         <!-- Section 2: Form Registrasi Presensi & Evaluasi Peserta -->
-        <section id="form-evaluasi">
+        <section id="form-evaluasi" class="card-section">
             <h2>Form Presensi & Evaluasi Peserta</h2>
-            <form action="#" method="post">
-                <p>Silakan isi data diri dan berikan penilaian Anda secara objektif setelah mengikuti kegiatan:</p>
+            <form action="#" method="post" class="form-container">
+                <p class="form-instruction">Silakan isi data diri dan berikan penilaian Anda secara objektif setelah mengikuti kegiatan:</p>
 
                 <!-- Data Diri Peserta -->
                 <fieldset>
                     <legend>Data Kehadiran Peserta</legend>
-                    <p>
-                        <label for="no_jkn">Nomor Kartu JKN:</label><br>
+                    <div class="form-group">
+                        <label for="no_jkn">Nomor Kartu JKN:</label>
                         <input type="text" id="no_jkn" name="no_jkn" placeholder="Masukkan 13 digit No. Kartu JKN" maxlength="13" required>
-                    </p>
-                    <p>
-                        <label for="nama">Nama Lengkap Peserta:</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama">Nama Lengkap Peserta:</label>
                         <input type="text" id="nama" name="nama" placeholder="Masukkan nama sesuai KTP/Kartu" required>
-                    </p>
-                    <p>
-                        <label for="instansi">Asal Instansi / Unit Kerja:</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="instansi">Asal Instansi / Unit Kerja:</label>
                         <input type="text" id="instansi" name="instansi" placeholder="Contoh: Estate PT. Nunukan Jaya Lestari" required>
-                    </p>
-                    <p>
-                        <label for="no_hp">Nomor HP / WhatsApp:</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="no_hp">Nomor HP / WhatsApp:</label>
                         <input type="tel" id="no_hp" name="no_hp" placeholder="Contoh: 081234567890" required>
-                    </p>
+                    </div>
                 </fieldset>
 
                 <!-- Evaluasi & Penilaian -->
                 <fieldset>
                     <legend>Penilaian & Kepuasan Acara</legend>
-                    <p>
-                        <label for="skor_pemahaman">Tingkat Pemahaman Materi (Skala 1 - 5):</label><br>
+                    <div class="form-group">
+                        <label for="skor_pemahaman">Tingkat Pemahaman Materi (Skala 1 - 5):</label>
                         <input type="number" id="skor_pemahaman" name="skor_pemahaman" min="1" max="5" placeholder="1 = Sangat Kurang, 5 = Sangat Paham" required>
-                    </p>
-                    <p>
-                        <label for="skor_kepuasan">Tingkat Kepuasan Penyelenggaraan (Skala 1 - 5):</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="skor_kepuasan">Tingkat Kepuasan Penyelenggaraan (Skala 1 - 5):</label>
                         <input type="number" id="skor_kepuasan" name="skor_kepuasan" min="1" max="5" placeholder="1 = Sangat Kecewa, 5 = Sangat Puas" required>
-                    </p>
-                    <p>
-                        <label for="saran">Saran & Masukan untuk Kantor Kabupaten Nunukan:</label><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="saran">Saran & Masukan untuk Kantor Kabupaten Nunukan:</label>
                         <textarea id="saran" name="saran" rows="4" placeholder="Tuliskan kritik dan saran Anda di sini..."></textarea>
-                    </p>
+                    </div>
                 </fieldset>
 
-                <br>
-                <button type="submit">Kirim Presensi & Evaluasi</button>
+                <div class="form-action">
+                    <button type="submit" class="btn-primary">Kirim Presensi & Evaluasi</button>
+                </div>
             </form>
         </section>
 
-        <!-- Section 3: Ringkasan Rekapitulasi (Preview Tampilan Dashboard) -->
-        <section id="dashboard-rekap">
+        <!-- Section 3: Ringkasan Rekapitulasi (CSS Grid Auto-Fit Cards) -->
+        <section id="dashboard-rekap" class="card-section">
             <h2>Ringkasan Rekapitulasi Evaluasi Sosialisasi</h2>
             <p>Data rekapitulasi terkini dari hasil masukan peserta kegiatan sosialisasi:</p>
 
-            <div>
+            <div class="rekap-container">
                 <h3>Indikator Kinerja Sosialisasi Bulan Ini - Kantor Kabupaten Nunukan</h3>
-                <ul>
-                    <li><strong>Total Kegiatan Dilaksanakan:</strong> 8 Acara</li>
-                    <li><strong>Total Peserta Terdaftar:</strong> 320 Orang</li>
-                    <li><strong>Rata-Rata Skor Pemahaman:</strong> 4.7 / 5.0</li>
-                    <li><strong>Rata-Rata Skor Kepuasan:</strong> 4.8 / 5.0</li>
+                <ul class="stats-grid">
+                    <li class="stat-card">
+                        <span class="stat-label">Total Kegiatan</span>
+                        <strong class="stat-value">8 Acara</strong>
+                    </li>
+                    <li class="stat-card">
+                        <span class="stat-label">Total Peserta Terdaftar</span>
+                        <strong class="stat-value">320 Orang</strong>
+                    </li>
+                    <li class="stat-card">
+                        <span class="stat-label">Rata-Rata Skor Pemahaman</span>
+                        <strong class="stat-value">4.7 / 5.0</strong>
+                    </li>
+                    <li class="stat-card">
+                        <span class="stat-label">Rata-Rata Skor Kepuasan</span>
+                        <strong class="stat-value">4.8 / 5.0</strong>
+                    </li>
                 </ul>
             </div>
         </section>
@@ -121,7 +139,7 @@
     </main>
 
     <!-- Footer Halaman -->
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; 2026 BPJS Kesehatan Kantor Kabupaten Nunukan - SITRA (Sistem Registrasi & Evaluasi Sosialisasi Terpadu)</p>
     </footer>
 
