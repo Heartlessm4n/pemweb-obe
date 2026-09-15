@@ -39,3 +39,14 @@ Situs Layanan Publik yang dianalisis: **https://bps.go.id/id**
 
 ## Status Proyek
 - **Progress:** Selesai Modul 2 (Struktur HTML5 Semantik dan Aksesibilitas Web Dasar - SITRA BPJS Nunukan).
+
+## Catatan Fitur Modul 3 (CSS Modern, Responsive Design & UI/UX)
+- Implementasi *Design System Tokens* (`:root`) untuk mengelola variabel warna resmi BPJS Kesehatan (`#00a859`), typography, spacing, dan radius.
+- Menerapkan Flexbox pada tata letak menu navigasi (`nav ul`) dengan `flex-wrap` agar tombol melipat secara alami tanpa memicu *horizontal scrollbar*.
+- Menerapkan CSS Grid dua dimensi pada kartu statistik (`.stats-grid`) dan tata letak artikel hero (`.article-grid`) menggunakan satuan proporsional `fr`.
+- Penerapan *responsive typography* menggunakan fungsi `clamp()` pada judul utama header.
+- Penerapan strategi *mobile-first* dengan *media query* `@media (min-width: 768px)` untuk fleksibilitas tampilan di perangkat layar lebar.
+- Pengujian aksesibilitas visual dengan mempertahankan indikator fokus (`:focus-visible`) warna hijau menyala (`3px`) saat navigasi menggunakan tombol Tab keyboard.
+
+## Status Proyek
+- **Progress:** Selesai Modul 3 (CSS Modern, Responsive Design, Flexbox/Grid, dan Dasar UI/UX - SITRA BPJS Nunukan).
