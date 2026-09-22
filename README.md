@@ -50,3 +50,12 @@ Situs Layanan Publik yang dianalisis: **https://bps.go.id/id**
 
 ## Status Proyek
 - **Progress:** Selesai Modul 3 (CSS Modern, Responsive Design, Flexbox/Grid, dan Dasar UI/UX - SITRA BPJS Nunukan).
+
+## Catatan Fitur Modul 4 (Logika JavaScript Modern & ES Modules)
+- Memisahkan logika program menjadi dua modul utama (`js/utils.js` dan `js/app.js`) menggunakan sintaks ES Modules (`export` dan `import`).
+- Menerapkan manipulasi array of objects menggunakan method `filter` (penyaringan kondisi/lokasi), `map` (pembentukan array nama/judul), `reduce` (akumulasi total unit/anggaran), serta `find` (pencarian data spesifik berdasar ID/kode).
+- Menggunakan *object destructuring* dan *template literals* untuk menghasilkan format string ringkasan data yang rapi pada konsol browser.
+- Menerapkan penanganan kesalahan dasar (*error handling*) dengan blok `try...catch` dan penyampaian pesan error melalui `throw new TypeError()`.
+
+## Status Proyek
+- **Progress:** Selesai Modul 4 (Logika JavaScript Modern ES6+, Modularisasi, Array Methods, dan Error Handling - SITRA BPJS Nunukan).
