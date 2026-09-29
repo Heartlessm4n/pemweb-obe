@@ -68,3 +68,13 @@ Situs Layanan Publik yang dianalisis: **https://bps.go.id/id**
 
 ## Status Proyek
 - **Progress:** Selesai Modul 5 (DOM, Event, Web Storage, dan Dynamic UI - SITRA BPJS Nunukan).
+
+## Catatan Fitur Modul 5 & Tugas OBE (DOM, Event, Web Storage, & Dynamic UI)
+- **Safe DOM Update**: Merender kartu agenda sosialisasi secara dinamis menggunakan `document.createElement()` dan `append()` untuk keamanan struktur antarmuka.
+- **Pencarian Real-Time**: Menyaring agenda sosialisasi secara instan berdasarkan *event* `input` pada kolom pencarian.
+- **Filter Status Interaktif**: Menyaring data berdasarkan kategori status (*Semua, Selesai, Proses, Mendatang*) melalui atribut `data-filter`.
+- **Event Delegation & Popup Modal**: Menerapkan *Event Delegation* pada kontainer utama untuk memicu jendela *modal* informasi detail acara secara dinamis.
+- **Web Storage Persistence**: Menyimpan preferensi tema (*Dark/Light Mode*) dan batasan item per halaman (`limit`) secara permanen menggunakan `localStorage`.
+
+## Status Proyek
+- **Progress:** Selesai Tugas OBE Modul 5 (Interaktivitas DOM, Event, Web Storage, dan Dynamic UI - SITRA BPJS Nunukan).
