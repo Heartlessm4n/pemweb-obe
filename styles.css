@@ -503,12 +503,14 @@ body {
 .btn-detail { background: transparent; color: var(--primary-green); border: 1px solid var(--primary-green); padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
 .btn-detail:hover { background: var(--primary-green); color: white; }
 
-/* Modal */
+/* Modal Popup Styling */
 .modal.hidden { display: none; }
 .modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; }
 .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
-.modal-content { background: var(--bg-surface); border-radius: 10px; width: 90%; max-width: 500px; z-index: 210; padding: 1.25rem; }
+.modal-content { background: var(--bg-surface); border-radius: 10px; width: 90%; max-width: 500px; z-index: 210; padding: 1.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-.close-modal { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-secondary); }
-.modal-footer { margin-top: 1rem; text-align: right; }
-.btn-close-modal { padding: 0.4rem 1rem; border-radius: 6px; border: none; background: var(--text-secondary); color: white; cursor: pointer; }
+.close-modal { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-secondary); }
+.modal-body { margin-bottom: 1.25rem; }
+.modal-footer { text-align: right; }
+.btn-close-modal { padding: 0.5rem 1.2rem; border-radius: 6px; border: none; background: var(--text-secondary); color: white; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
+.btn-close-modal:hover { opacity: 0.9; }

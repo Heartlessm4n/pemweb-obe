@@ -3,33 +3,40 @@ import {
     cariKegiatanById 
 } from './utils.js';
 
+// State Aplikasi
 let state = {
     filterStatusKegiatan: 'Semua',
     searchKegiatanQuery: '',
     itemLimit: 10
 };
 
+// Seleksi Elemen DOM Utama
+const containerKegiatan = document.querySelector('#daftar-kegiatan');
+const filterStatusBtns = document.querySelectorAll('.btn-filter');
+const searchInput = document.querySelector('#search-input-kegiatan');
+const limitSelect = document.querySelector('#limit-select');
+const themeButton = document.querySelector('#theme-button');
+
 document.addEventListener('DOMContentLoaded', () => {
     initThemePreference();
     initTabNavigation();
     initQuickAccessNavigation();
-    initFiltersAndSearch();
-    initLimitSelect();
+    initFiltersAndEvents();
+    initLimitStorage();
     initModalAndDelegation();
     renderKegiatan();
 });
 
+// 1. Web Storage: Preferensi Tema (Dark/Light)
 function initThemePreference() {
-    const themeBtn = document.getElementById('theme-button');
-    if (!themeBtn) return;
-
+    if (!themeButton) return;
     const savedTheme = localStorage.getItem('theme') ?? 'light';
     document.documentElement.setAttribute('data-theme', savedTheme);
     updateThemeButtonUI(savedTheme);
 
-    themeBtn.addEventListener('click', () => {
+    themeButton.addEventListener('click', () => {
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        const nextTheme = currentTheme === 'light' ? 'dark' : 'light';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
         document.documentElement.setAttribute('data-theme', nextTheme);
         localStorage.setItem('theme', nextTheme);
@@ -38,8 +45,8 @@ function initThemePreference() {
 }
 
 function updateThemeButtonUI(theme) {
-    const icon = document.querySelector('.theme-icon');
-    const text = document.querySelector('.theme-text');
+    const icon = themeButton.querySelector('.theme-icon');
+    const text = themeButton.querySelector('.theme-text');
     if (theme === 'dark') {
         if (icon) icon.className = 'fa-solid fa-sun theme-icon';
         if (text) text.textContent = 'Mode Terang';
@@ -49,6 +56,7 @@ function updateThemeButtonUI(theme) {
     }
 }
 
+// 2. Navigasi Tab Utama
 function initTabNavigation() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
@@ -80,13 +88,11 @@ function initQuickAccessNavigation() {
     });
 }
 
-function initFiltersAndSearch() {
-    const searchKegiatan = document.getElementById('search-input-kegiatan');
-    const filterStatusBtns = document.querySelectorAll('.btn-filter');
-
-    if (searchKegiatan) {
-        searchKegiatan.addEventListener('input', (e) => {
-            state.searchKegiatanQuery = e.target.value.toLowerCase().trim();
+// 3. Event Handling: Pencarian (Input) & Filter Status
+function initFiltersAndEvents() {
+    if (searchInput) {
+        searchInput.addEventListener('input', (event) => {
+            state.searchKegiatanQuery = event.target.value.toLowerCase().trim();
             renderKegiatan();
         });
     }
@@ -101,91 +107,46 @@ function initFiltersAndSearch() {
     });
 }
 
-function initLimitSelect() {
-    const limitSelect = document.getElementById('limit-select');
+// 4. Web Storage: Limit Jumlah Item yang Tampil
+function initLimitStorage() {
     if (!limitSelect) return;
-
-    const savedLimit = localStorage.getItem('limit_preference') || '10';
-    state.itemLimit = parseInt(savedLimit);
+    const savedLimit = localStorage.getItem('limit') ?? '10';
+    state.itemLimit = Number(savedLimit);
     limitSelect.value = savedLimit;
 
     limitSelect.addEventListener('change', (e) => {
-        state.itemLimit = parseInt(e.target.value);
-        localStorage.setItem('limit_preference', e.target.value);
+        state.itemLimit = Number(e.target.value);
+        localStorage.setItem('limit', e.target.value);
         renderKegiatan();
     });
 }
 
-function renderKegiatan() {
-    const container = document.getElementById('daftar-kegiatan');
-    if (!container) return;
-    container.innerHTML = '';
-
-    const filtered = daftarKegiatanSosialisasi.filter(item => {
-        const matchStatus = state.filterStatusKegiatan === 'Semua' || item.status === state.filterStatusKegiatan;
-        const matchSearch = item.judul.toLowerCase().includes(state.searchKegiatanQuery) || 
-                            item.kecamatan.toLowerCase().includes(state.searchKegiatanQuery);
-        return matchStatus && matchSearch;
-    });
-
-    const dataTampil = filtered.slice(0, state.itemLimit);
-
-    const badge = document.getElementById('total-badge');
-    if (badge) badge.textContent = `${filtered.length} Acara`;
-
-    if (dataTampil.length === 0) {
-        container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-secondary); padding: 1rem;">Tidak ada agenda sosialisasi yang ditemukan.</p>';
-        return;
-    }
-
-    dataTampil.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        const statusClass = item.status.toLowerCase();
-
-        card.innerHTML = `
-            <div>
-                <div class="flex-between">
-                    <span class="status-tag ${statusClass}">${item.status}</span>
-                    <small style="color: var(--text-secondary);"><i class="fa-solid fa-location-dot"></i> Kec. ${item.kecamatan}</small>
-                </div>
-                <h4 style="margin: 0.6rem 0 0.3rem 0; font-size: 1.05rem;">${item.judul}</h4>
-                <p style="font-size: 0.85rem; color: var(--text-secondary);"><i class="fa-solid fa-users"></i> Target: ${item.peserta} Peserta</p>
-                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;"><i class="fa-solid fa-wallet"></i> Anggaran: Rp ${item.anggaran.toLocaleString('id-ID')}</p>
-            </div>
-            <button class="btn-detail" data-id="${item.id}" data-type="kegiatan" style="margin-top: 0.85rem;">Detail Acara</button>
-        `;
-        container.appendChild(card);
-    });
-}
-
+// 5. Event Delegation untuk Popup Modal Detail
 function initModalAndDelegation() {
-    const mainContainer = document.querySelector('.container');
     const modal = document.getElementById('modal-detail');
     const closeBtns = document.querySelectorAll('.close-modal, .btn-close-modal, .modal-overlay');
 
-    if (mainContainer) {
-        mainContainer.addEventListener('click', (e) => {
-            if (e.target && e.target.classList.contains('btn-detail')) {
-                const id = e.target.getAttribute('data-id');
-                const detailText = cariKegiatanById(daftarKegiatanSosialisasi, id);
-                const item = daftarKegiatanSosialisasi.find(k => k.id === id);
-                
-                const modalTitle = document.getElementById('modal-title');
-                const modalBody = document.getElementById('modal-body');
-                
-                if (modalTitle && modalBody) {
-                    modalTitle.textContent = item ? item.judul : 'Detail Acara';
-                    modalBody.innerHTML = `
-                        <p style="margin-bottom: 0.5rem;"><strong>Informasi Lengkap:</strong></p>
-                        <blockquote style="background: var(--bg-accent); padding: 0.75rem; border-left: 4px solid var(--primary-green); border-radius: 4px; font-size: 0.9rem; margin-bottom: 1rem;">
-                            ${detailText}
-                        </blockquote>
-                    `;
-                    modal.classList.remove('hidden');
-                } else {
-                    alert(detailText);
-                }
+    if (containerKegiatan) {
+        containerKegiatan.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-detail');
+            if (!btn) return;
+
+            const id = btn.getAttribute('data-id');
+            const detailText = cariKegiatanById(daftarKegiatanSosialisasi, id);
+            const item = daftarKegiatanSosialisasi.find(k => k.id === id);
+            
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            
+            if (modalTitle && modalBody && modal) {
+                modalTitle.textContent = item ? item.judul : 'Detail Acara';
+                modalBody.innerHTML = `
+                    <p style="margin-bottom: 0.5rem;"><strong>Informasi Lengkap:</strong></p>
+                    <blockquote style="background: var(--bg-accent); padding: 0.75rem; border-left: 4px solid var(--primary-green); border-radius: 4px; font-size: 0.9rem; margin-bottom: 1rem;">
+                        ${detailText}
+                    </blockquote>
+                `;
+                modal.classList.remove('hidden');
             }
         });
     }
@@ -195,4 +156,79 @@ function initModalAndDelegation() {
             if (modal) modal.classList.add('hidden');
         });
     });
+}
+
+// 6. Fungsi Render DOM (Safe Update dengan createElement & append)
+function renderKegiatan() {
+    if (!containerKegiatan) return;
+    containerKegiatan.replaceChildren();
+
+    const filtered = daftarKegiatanSosialisasi.filter(item => {
+        const matchStatus = state.filterStatusKegiatan === 'Semua' || item.status === state.filterStatusKegiatan;
+        const matchSearch = item.judul.toLowerCase().includes(state.searchKegiatanQuery) || 
+                            item.kecamatan.toLowerCase().includes(state.searchKegiatanQuery);
+        return matchStatus && matchSearch;
+    });
+
+    const dataDibatasi = filtered.slice(0, state.itemLimit);
+
+    const badge = document.getElementById('total-badge');
+    if (badge) badge.textContent = `${filtered.length} Acara`;
+
+    if (dataDibatasi.length === 0) {
+        const p = document.createElement('p');
+        p.textContent = 'Tidak ada agenda sosialisasi yang ditemukan.';
+        p.style.gridColumn = '1 / -1';
+        p.style.textAlign = 'center';
+        p.style.color = 'var(--text-secondary)';
+        p.style.padding = '1rem';
+        containerKegiatan.append(p);
+        return;
+    }
+
+    for (const item of dataDibatasi) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const headerFlex = document.createElement('div');
+        headerFlex.className = 'flex-between';
+
+        const statusTag = document.createElement('span');
+        statusTag.className = `status-tag ${item.status.toLowerCase()}`;
+        statusTag.textContent = item.status;
+
+        const locSmall = document.createElement('small');
+        locSmall.style.color = 'var(--text-secondary)';
+        locSmall.innerHTML = `<i class="fa-solid fa-location-dot"></i> Kec. ${item.kecamatan}`;
+        headerFlex.append(statusTag, locSmall);
+
+        const title = document.createElement('h4');
+        title.style.margin = '0.6rem 0 0.3rem 0';
+        title.style.fontSize = '1.05rem';
+        title.textContent = item.judul;
+
+        const infoPeserta = document.createElement('p');
+        infoPeserta.style.fontSize = '0.85rem';
+        infoPeserta.style.color = 'var(--text-secondary)';
+        infoPeserta.innerHTML = `<i class="fa-solid fa-users"></i> Target: ${item.peserta} Peserta`;
+
+        const infoAnggaran = document.createElement('p');
+        infoAnggaran.style.fontSize = '0.85rem';
+        infoAnggaran.style.color = 'var(--text-secondary)';
+        infoAnggaran.style.marginTop = '0.2rem';
+        infoAnggaran.innerHTML = `<i class="fa-solid fa-wallet"></i> Anggaran: Rp ${item.anggaran.toLocaleString('id-ID')}`;
+
+        const contentDiv = document.createElement('div');
+        contentDiv.append(headerFlex, title, infoPeserta, infoAnggaran);
+
+        const btnDetail = document.createElement('button');
+        btnDetail.type = 'button';
+        btnDetail.className = 'btn-detail';
+        btnDetail.textContent = 'Detail Acara';
+        btnDetail.dataset.id = item.id;
+        btnDetail.style.marginTop = '0.85rem';
+
+        card.append(contentDiv, btnDetail);
+        containerKegiatan.append(card);
+    }
 }
