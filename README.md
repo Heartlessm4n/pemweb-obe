@@ -59,3 +59,12 @@ Situs Layanan Publik yang dianalisis: **https://bps.go.id/id**
 
 ## Status Proyek
 - **Progress:** Selesai Modul 4 (Logika JavaScript Modern ES6+, Modularisasi, Array Methods, dan Error Handling - SITRA BPJS Nunukan).
+
+## Catatan Fitur Modul 5 (DOM, Event, Web Storage, & Dynamic UI)
+- Mengimplementasikan manipulasi DOM dinamis menggunakan sintaks ES Modules (`import`/`export`) untuk merender kartu agenda sosialisasi secara otomatis.
+- Menerapkan fitur pencarian *real-time* berbasis *event* `input` serta tombol filter status (Semua, Selesai, Proses, Mendatang) dengan penanda khusus tanpa emoji.
+- Menerapkan *Event Delegation* pada kontainer utama untuk memicu *popup modal* detail informasi acara.
+- Menerapkan fitur *Theme Preference* (Mode Terang/Gelap) dan penyimpanan preferensi limit item per halaman menggunakan `localStorage`.
+
+## Status Proyek
+- **Progress:** Selesai Modul 5 (DOM, Event, Web Storage, dan Dynamic UI - SITRA BPJS Nunukan).
