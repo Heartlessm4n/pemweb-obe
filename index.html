@@ -14,7 +14,6 @@
     <header class="navbar">
         <div class="nav-container">
             <div class="brand">
-                <!-- Logo SITRA Gambar Kustom (Ukuran Diperbesar) -->
                 <div class="brand-logo-img-wrapper">
                     <img src="assets/logo-sitra.png" alt="Logo SITRA" class="brand-logo-img">
                 </div>
@@ -59,7 +58,6 @@
 
         <!-- TAB 0: DASHBOARD UTAMA -->
         <section id="tab-dashboard" class="tab-content active">
-            <!-- Hero Banner Green Mesh -->
             <div class="hero-banner">
                 <div class="hero-decoration"></div>
                 <div class="hero-content">
@@ -71,7 +69,6 @@
                 </div>
             </div>
 
-            <!-- Ringkasan Statistik Evaluasi -->
             <div class="panel-card" style="margin-bottom: 1.5rem;">
                 <div class="panel-header">
                     <h2>Ringkasan Rekapitulasi Evaluasi Sosialisasi</h2>
@@ -98,7 +95,6 @@
                 </div>
             </div>
 
-            <!-- Akses Cepat Fitur Sistem -->
             <div class="panel-card">
                 <div class="panel-header">
                     <h3>Akses Cepat Fitur Sistem</h3>
@@ -120,7 +116,7 @@
                         </div>
                         <div class="quick-info">
                             <h4>Pengajuan Kegiatan <i class="fa-solid fa-arrow-right card-arrow"></i></h4>
-                            <p>Ajukan permohonan sosialisasi JKN untuk instansi/perusahaan Anda.</p>
+                            <p>Ajukan permohonan sosialisasi JKN-KIS dengan validasi aksesibel.</p>
                         </div>
                     </div>
 
@@ -147,7 +143,7 @@
             </div>
         </section>
 
-        <!-- TAB 1: INFORMASI KEGIATAN SOSIALISASI -->
+        <!-- TAB 1: INFORMASI KEGIATAN -->
         <section id="tab-informasi" class="tab-content">
             <div class="panel-card">
                 <div class="panel-header">
@@ -174,38 +170,50 @@
             </div>
         </section>
 
-        <!-- TAB 2: PENGAJUAN KEGIATAN -->
+        <!-- TAB 2: PENGAJUAN KEGIATAN (MODUL 6 - MURNI FORM PENGAJUAN) -->
         <section id="tab-pengajuan" class="tab-content">
             <div class="panel-card">
                 <div class="panel-header">
-                    <h2>Form Pengajuan Kegiatan Sosialisasi Baru</h2>
-                    <p>Silakan ajukan permohonan sosialisasi JKN-KIS untuk instansi, desa, atau perusahaan Anda:</p>
+                    <h2>Form Pengajuan Kegiatan Sosialisasi Baru (Modul 6)</h2>
+                    <p>Formulir aksesibel dengan validasi client-side, constraint HTML5, dan penanganan pesan error:</p>
                 </div>
-                <form id="form-pengajuan" class="app-form">
+                
+                <div id="form-status" aria-live="polite" style="margin-bottom: 1rem; font-weight: 600; font-size: 0.85rem; color: var(--primary-green);"></div>
+
+                <form id="form-pengajuan" class="app-form" novalidate>
                     <div class="form-group">
                         <label for="nama-instansi">Nama Instansi / Perusahaan / Desa:</label>
-                        <input type="text" id="nama-instansi" placeholder="Contoh: PT. Nunukan Jaya Lestari / Desa Binusan" required>
+                        <input type="text" id="nama-instansi" name="nama" placeholder="Contoh: PT. Garasi Aden / Desa Binusan" required minlength="3" aria-describedby="error-nama">
+                        <small id="error-nama" class="error-text" style="color: #ef4444; font-size: 0.75rem;"></small>
                     </div>
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="lokasi-kecamatan">Kecamatan Target:</label>
-                            <select id="lokasi-kecamatan" class="select-input">
+                            <select id="lokasi-kecamatan" name="kecamatan" class="select-input" required aria-describedby="error-kecamatan">
+                                <option value="">-- Pilih Kecamatan Target --</option>
                                 <option value="Nunukan">Nunukan</option>
                                 <option value="Nunukan Selatan">Nunukan Selatan</option>
                                 <option value="Sebatik">Sebatik</option>
                                 <option value="Krayan">Krayan</option>
                                 <option value="Lumbis">Lumbis</option>
                             </select>
+                            <small id="error-kecamatan" class="error-text" style="color: #ef4444; font-size: 0.75rem;"></small>
                         </div>
+                        
                         <div class="form-group">
                             <label for="estimasi-peserta">Estimasi Jumlah Peserta:</label>
-                            <input type="number" id="estimasi-peserta" placeholder="Contoh: 50" required>
+                            <input type="number" id="estimasi-peserta" name="jumlah" placeholder="Contoh: 50" min="1" required aria-describedby="error-jumlah">
+                            <small id="error-jumlah" class="error-text" style="color: #ef4444; font-size: 0.75rem;"></small>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="tanggal-pengajuan">Rencana Tanggal Pelaksanaan:</label>
-                        <input type="date" id="tanggal-pengajuan" required>
+                        <input type="date" id="tanggal-pengajuan" name="tanggal" required aria-describedby="error-tanggal">
+                        <small id="error-tanggal" class="error-text" style="color: #ef4444; font-size: 0.75rem;"></small>
                     </div>
+
                     <button type="submit" class="btn-submit"><i class="fa-solid fa-paper-plane"></i> Kirim Pengajuan</button>
                 </form>
             </div>
@@ -243,10 +251,8 @@
             </div>
         </section>
 
-        <!-- TAB 4: KATALOG & AGENDA (MODUL 5 & TUGAS OBE) -->
+        <!-- TAB 4: KATALOG & AGENDA -->
         <section id="tab-katalog" class="tab-content">
-            
-            <!-- Toolbar Agenda Sosialisasi -->
             <div class="toolbar-section">
                 <div class="search-group">
                     <i class="fa-solid fa-search search-icon" style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary);"></i>
@@ -265,7 +271,6 @@
                 </select>
             </div>
 
-            <!-- Panel Daftar Agenda Sosialisasi (Safe DOM Render Target) -->
             <div class="panel-card">
                 <div class="panel-header flex-between">
                     <h3>Daftar Agenda Sosialisasi</h3>
@@ -277,7 +282,7 @@
 
     </main>
 
-    <!-- Modal Popup Detail via Event Delegation -->
+    <!-- Modal Popup Detail -->
     <div id="modal-detail" class="modal hidden">
         <div class="modal-overlay"></div>
         <div class="modal-content">
@@ -292,7 +297,6 @@
         </div>
     </div>
 
-    <!-- Modul JavaScript Utama -->
     <script type="module" src="js/app.js"></script>
 </body>
 </html>

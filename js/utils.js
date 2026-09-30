@@ -1,8 +1,3 @@
-/* ==========================================================================
-   MODUL UTILS (js/utils.js)
-   Gudang Data & Fungsi Logika SITRA-BPJS Nunukan
-   ========================================================================== */
-
 export const daftarKegiatanSosialisasi = [
     { id: 'K01', judul: 'Sosialisasi JKN Desa Binusan', peserta: 50, anggaran: 1500000, status: 'Selesai', kecamatan: 'Nunukan' },
     { id: 'K02', judul: 'Edukasi Mobile JKN Pasar Jamker', peserta: 40, anggaran: 2000000, status: 'Selesai', kecamatan: 'Nunukan Selatan' },
@@ -40,4 +35,4 @@ export const cariKegiatanById = (data, id) => {
 
     const { judul, peserta, anggaran, kecamatan, status } = hasil;
     return `[${id}] ${judul} | Lokasi: Kec. ${kecamatan} | Peserta: ${peserta} orang | Anggaran: Rp ${anggaran.toLocaleString('id-ID')} | Status: ${status}`;
-};
+};  

@@ -3,14 +3,12 @@ import {
     cariKegiatanById 
 } from './utils.js';
 
-// State Aplikasi
 let state = {
     filterStatusKegiatan: 'Semua',
     searchKegiatanQuery: '',
     itemLimit: 10
 };
 
-// Seleksi Elemen DOM Utama
 const containerKegiatan = document.querySelector('#daftar-kegiatan');
 const filterStatusBtns = document.querySelectorAll('.btn-filter');
 const searchInput = document.querySelector('#search-input-kegiatan');
@@ -24,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initFiltersAndEvents();
     initLimitStorage();
     initModalAndDelegation();
+    initFormValidation();
     renderKegiatan();
 });
 
@@ -62,7 +61,8 @@ function initTabNavigation() {
     const tabContents = document.querySelectorAll('.tab-content');
 
     tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
             const targetTabId = btn.getAttribute('data-tab');
             tabBtns.forEach(b => b.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active'));
@@ -158,7 +158,133 @@ function initModalAndDelegation() {
     });
 }
 
-// 6. Fungsi Render DOM (Safe Update dengan createElement & append)
+// 6. MODUL 6: VALIDASI FORM PENGAJUAN KEGIATAN (UI FEEDBACK)
+function initFormValidation() {
+    const form = document.querySelector('#form-pengajuan');
+    const status = document.querySelector('#form-status');
+
+    if (!form) return;
+
+    function validateForm(formData) {
+        const errors = {};
+        
+        const nama = String(formData.get('nama') ?? '').trim();
+        const kecamatan = String(formData.get('kecamatan') ?? '');
+        const jumlah = Number(formData.get('jumlah'));
+        const tanggalInput = String(formData.get('tanggal') ?? '');
+
+        // 1. Validasi Nama Instansi / Desa
+        if (!nama) {
+            errors.nama = 'Nama instansi / desa wajib diisi.';
+        } else if (nama.length < 3) {
+            errors.nama = 'Nama instansi / desa minimal harus 3 karakter.';
+        }
+
+        // 2. Validasi Kecamatan (Pilihan opsi)
+        const validKecamatan = ['Nunukan', 'Nunukan Selatan', 'Sebatik', 'Krayan', 'Lumbis'];
+        if (!kecamatan) {
+            errors.kecamatan = 'Kecamatan target wajib dipilih.';
+        } else if (!validKecamatan.includes(kecamatan)) {
+            errors.kecamatan = 'Kecamatan yang dipilih tidak valid.';
+        }
+
+        // 3. Validasi Estimasi Jumlah Peserta (Number, min 1)
+        if (formData.get('jumlah') === '') {
+            errors.jumlah = 'Estimasi jumlah peserta wajib diisi.';
+        } else if (!Number.isInteger(jumlah) || jumlah < 1) {
+            errors.jumlah = 'Estimasi peserta harus berupa bilangan bulat minimal 1.';
+        }
+
+        // 4. Validasi Tanggal (Hari ini atau masa depan, tidak boleh masa lalu)
+        if (!tanggalInput) {
+            errors.tanggal = 'Rencana tanggal pelaksanaan wajib diisi.';
+        } else {
+            const selectedDate = new Date(tanggalInput);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0); // Normalisasi ke tengah malam
+
+            if (selectedDate < today) {
+                errors.tanggal = 'Rencana tanggal pelaksanaan tidak boleh tanggal yang sudah lewat.';
+            }
+        }
+
+        return errors;
+    }
+
+    form.addEventListener('submit', event => {
+        // Mencegah reload browser dan pengalihan tab
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const formData = new FormData(form);
+        const errors = validateForm(formData);
+
+        // Reset pesan error & atribut aria-invalid
+        document.querySelectorAll('.error-text').forEach(el => el.textContent = '');
+        form.querySelectorAll('[aria-invalid="true"]').forEach(el => el.removeAttribute('aria-invalid'));
+
+        // Jika terdapat error validasi
+        if (Object.keys(errors).length > 0) {
+            for (const [field, message] of Object.entries(errors)) {
+                const errorEl = document.querySelector(`#error-${field}`);
+                if (errorEl) errorEl.textContent = message;
+                
+                const inputEl = form.elements[field];
+                if (inputEl) inputEl.setAttribute('aria-invalid', 'true');
+            }
+
+            // Fokus ke elemen error pertama
+            const firstField = Object.keys(errors)[0];
+            form.elements[firstField]?.focus();
+            
+            if (status) {
+                status.style.background = 'transparent';
+                status.style.border = 'none';
+                status.style.padding = '0';
+                status.style.color = '#ef4444';
+                status.textContent = 'Periksa kembali data form yang belum valid.';
+            }
+            return false;
+        }
+
+        // SIMPAN DATA SEMENTARA KE LOCALSTORAGE BROWSER
+        const pengajuanBaru = {
+            nama: formData.get('nama'),
+            kecamatan: formData.get('kecamatan'),
+            jumlah: formData.get('jumlah'),
+            tanggal: formData.get('tanggal'),
+            timestamp: new Date().toISOString()
+        };
+
+        const listPengajuan = JSON.parse(localStorage.getItem('daftar_pengajuan') ?? '[]');
+        listPengajuan.push(pengajuanBaru);
+        localStorage.setItem('daftar_pengajuan', JSON.stringify(listPengajuan));
+
+        // TAMPILKAN BANNER SUKSES LANGSUNG DI UI (TANPA ALERT)
+        if (status) {
+            status.style.background = '#dcfce7';
+            status.style.border = '1px solid #22c55e';
+            status.style.padding = '0.85rem 1rem';
+            status.style.borderRadius = '8px';
+            status.style.color = '#15803d';
+            status.innerHTML = `
+                <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.35rem;">
+                    <i class="fa-solid fa-circle-check"></i> Pengajuan Kegiatan Berhasil Dikirim!
+                </div>
+                <div style="font-weight: 500; font-size: 0.85rem; line-height: 1.4;">
+                    Data valid dan siap diproses: <strong>${formData.get('nama')}</strong> (${formData.get('kecamatan')}) - Estimasi ${formData.get('jumlah')} peserta pada ${formData.get('tanggal')}.
+                </div>
+            `;
+        }
+
+        // Reset isi input form setelah berhasil disubmit
+        form.reset();
+
+        return false;
+    });
+}
+
+// 7. Fungsi Render DOM (Safe Update dengan createElement)
 function renderKegiatan() {
     if (!containerKegiatan) return;
     containerKegiatan.replaceChildren();
