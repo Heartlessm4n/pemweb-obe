@@ -78,3 +78,13 @@ Situs Layanan Publik yang dianalisis: **https://bps.go.id/id**
 
 ## Status Proyek
 - **Progress:** Selesai Tugas OBE Modul 5 (Interaktivitas DOM, Event, Web Storage, dan Dynamic UI - SITRA BPJS Nunukan).
+
+## Catatan Fitur Modul 6 & Tugas OBE (Form, Validasi, Accessibility, & Input Handling)
+- **Formulir Aksesibel**: Mengimplementasikan Form Pengajuan Kegiatan Sosialisasi Baru menggunakan struktur HTML5 semantik, pasangan `<label for="...">`, `aria-describedby`, dan `aria-invalid`.
+- **Client-Side Business Validation**: Menvalidasi nama instansi (min 3 karakter), pilihan kecamatan terdaftar, estimasi peserta (bilangan bulat positif), dan rencana tanggal pelaksanaan (menolak tanggal di masa lalu).
+- **Aksesibilitas & Error Handling**: Menampilkan pesan kesalahan dinamis dengan `aria-live="polite"`, perubahan border merah, dan pemanggilan otomatis `.focus()` ke field error pertama.
+- **UI Feedback Interaktif**: Mengganti popup `alert()` bawaan browser dengan banner status berwarna hijau langsung pada antarmuka web (`#form-status`) saat pengajuan berhasil.
+- **Web Storage Persistence**: Menyimpan data pengajuan yang lolos validasi secara sementara ke `localStorage` browser.
+
+## Status Proyek
+- **Progress:** Selesai Tugas OBE Modul 6 (Form, Validasi, Accessibility, dan Input Handling - SITRA BPJS Nunukan).
