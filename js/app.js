@@ -180,7 +180,7 @@ function initFormValidation() {
             errors.nama = 'Nama instansi / desa minimal harus 3 karakter.';
         }
 
-        // 2. Validasi Kecamatan (Pilihan opsi)
+        // 2. Validasi Kecamatan Target
         const validKecamatan = ['Nunukan', 'Nunukan Selatan', 'Sebatik', 'Krayan', 'Lumbis'];
         if (!kecamatan) {
             errors.kecamatan = 'Kecamatan target wajib dipilih.';
@@ -188,20 +188,20 @@ function initFormValidation() {
             errors.kecamatan = 'Kecamatan yang dipilih tidak valid.';
         }
 
-        // 3. Validasi Estimasi Jumlah Peserta (Number, min 1)
+        // 3. Validasi Estimasi Jumlah Peserta
         if (formData.get('jumlah') === '') {
             errors.jumlah = 'Estimasi jumlah peserta wajib diisi.';
         } else if (!Number.isInteger(jumlah) || jumlah < 1) {
             errors.jumlah = 'Estimasi peserta harus berupa bilangan bulat minimal 1.';
         }
 
-        // 4. Validasi Tanggal (Hari ini atau masa depan, tidak boleh masa lalu)
+        // 4. Validasi Tanggal (Tidak boleh tanggal yang sudah lewat)
         if (!tanggalInput) {
             errors.tanggal = 'Rencana tanggal pelaksanaan wajib diisi.';
         } else {
             const selectedDate = new Date(tanggalInput);
             const today = new Date();
-            today.setHours(0, 0, 0, 0); // Normalisasi ke tengah malam
+            today.setHours(0, 0, 0, 0);
 
             if (selectedDate < today) {
                 errors.tanggal = 'Rencana tanggal pelaksanaan tidak boleh tanggal yang sudah lewat.';
@@ -212,7 +212,6 @@ function initFormValidation() {
     }
 
     form.addEventListener('submit', event => {
-        // Mencegah reload browser dan pengalihan tab
         event.preventDefault();
         event.stopPropagation();
         
@@ -233,7 +232,6 @@ function initFormValidation() {
                 if (inputEl) inputEl.setAttribute('aria-invalid', 'true');
             }
 
-            // Fokus ke elemen error pertama
             const firstField = Object.keys(errors)[0];
             form.elements[firstField]?.focus();
             
@@ -277,14 +275,12 @@ function initFormValidation() {
             `;
         }
 
-        // Reset isi input form setelah berhasil disubmit
         form.reset();
-
         return false;
     });
 }
 
-// 7. Fungsi Render DOM (Safe Update dengan createElement)
+// 7. Fungsi Render DOM (Safe Update)
 function renderKegiatan() {
     if (!containerKegiatan) return;
     containerKegiatan.replaceChildren();

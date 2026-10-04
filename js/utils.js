@@ -35,4 +35,4 @@ export const cariKegiatanById = (data, id) => {
 
     const { judul, peserta, anggaran, kecamatan, status } = hasil;
     return `[${id}] ${judul} | Lokasi: Kec. ${kecamatan} | Peserta: ${peserta} orang | Anggaran: Rp ${anggaran.toLocaleString('id-ID')} | Status: ${status}`;
-};  
+};
